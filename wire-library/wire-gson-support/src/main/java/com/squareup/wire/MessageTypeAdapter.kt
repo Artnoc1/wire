@@ -35,8 +35,9 @@ internal class MessageTypeAdapter<M : Message<M, B>, B : Message.Builder<M, B>>(
   private val gson: Gson,
   type: TypeToken<M>
 ) : TypeAdapter<M>() {
+  // TODO(benoit) reflection get the syntax from `type.rawType`'s enclosing type adapter !?
   private val messageAdapter: RuntimeMessageAdapter<M, B> =
-      RuntimeMessageAdapter.create(type.rawType as Class<M>, "square.github.io/wire/unknown")
+      RuntimeMessageAdapter.create(type.rawType as Class<M>, "square.github.io/wire/unknown", Syntax.PROTO_2)
   private val fieldBindings: Map<String, FieldBinding<M, B>> =
       messageAdapter.fieldBindings.values.associateBy { it.declaredName }
 

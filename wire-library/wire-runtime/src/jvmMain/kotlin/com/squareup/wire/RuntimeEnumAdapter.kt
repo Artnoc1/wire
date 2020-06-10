@@ -21,8 +21,11 @@ import java.lang.reflect.Method
  * Converts values of an enum to and from integers using reflection.
  */
 internal class RuntimeEnumAdapter<E : WireEnum>(
-  private val javaType: Class<E>
-) : EnumAdapter<E>(javaType.kotlin) {
+  private val javaType: Class<E>,
+  syntax: Syntax
+) : EnumAdapter<E>(javaType.kotlin, syntax) {
+  constructor(javaType: Class<E>) : this(javaType, Syntax.PROTO_2)
+
   private var fromValueMethod: Method? = null // Lazy to avoid reflection during class loading.
 
   private fun getFromValueMethod(): Method {

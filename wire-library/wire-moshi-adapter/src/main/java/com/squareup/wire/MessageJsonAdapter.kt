@@ -28,8 +28,9 @@ internal class MessageJsonAdapter<M : Message<M, B>, B : Message.Builder<M, B>>(
   moshi: Moshi,
   type: Type
 ) : JsonAdapter<M>() {
+  // TODO(benoit) reflection get the syntax from `type.rawType`'s enclosing type adapter !?
   private val messageAdapter =
-      RuntimeMessageAdapter.create(type as Class<M>, "square.github.io/wire/unknown")
+      RuntimeMessageAdapter.create(type as Class<M>, "square.github.io/wire/unknown", Syntax.PROTO_2)
   private val fieldBindings = messageAdapter.fieldBindings.values.toTypedArray()
   private val encodeNames: List<String>
   private val options: JsonReader.Options

@@ -178,7 +178,7 @@ class ProtoFile private constructor(
     fun get(protoFileElement: ProtoFileElement): ProtoFile {
       val packageName = protoFileElement.packageName
 
-      val syntax = (protoFileElement.syntax ?: Syntax.PROTO_2).toString()
+      val syntax = protoFileElement.syntax ?: Syntax.PROTO_2
       val types = fromElements(packageName, protoFileElement.types, syntax)
 
       val services = fromElements(packageName, protoFileElement.services)
