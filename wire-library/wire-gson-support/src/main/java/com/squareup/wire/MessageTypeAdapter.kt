@@ -41,6 +41,10 @@ internal class MessageTypeAdapter<M : Message<M, B>, B : Message.Builder<M, B>>(
   private val fieldBindings: Map<String, FieldBinding<M, B>> =
       messageAdapter.fieldBindings.values.associateBy { it.declaredName }
 
+  init {
+    println("CONNARD $type $messageAdapter")
+  }
+
   @Throws(IOException::class)
   override fun write(out: JsonWriter, message: M?) {
     if (message == null) {

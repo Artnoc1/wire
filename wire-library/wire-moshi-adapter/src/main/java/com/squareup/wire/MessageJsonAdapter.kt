@@ -36,6 +36,8 @@ internal class MessageJsonAdapter<M : Message<M, B>, B : Message.Builder<M, B>>(
   private val options: JsonReader.Options
 
   init {
+    println("CONNARD $type $messageAdapter")
+
     val optionStrings = mutableListOf<String>()
     val encodeNames = mutableListOf<String>()
     for (fieldBinding in fieldBindings) {

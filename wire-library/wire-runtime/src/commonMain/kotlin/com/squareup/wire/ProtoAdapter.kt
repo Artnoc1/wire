@@ -746,7 +746,8 @@ internal fun commonDuration(): ProtoAdapter<Duration> = object : ProtoAdapter<Du
 internal fun commonStructMap(): ProtoAdapter<Map<String, *>> = object : ProtoAdapter<Map<String, *>>(
     LENGTH_DELIMITED,
     Map::class,
-    "type.googleapis.com/google.protobuf.Struct"
+    "type.googleapis.com/google.protobuf.Struct",
+    Syntax.PROTO_3
 ) {
   override fun encodedSize(value: Map<String, *>): Int {
     var size = 0
@@ -792,7 +793,8 @@ internal fun commonStructMap(): ProtoAdapter<Map<String, *>> = object : ProtoAda
 internal fun commonStructList(): ProtoAdapter<List<*>> = object : ProtoAdapter<List<*>>(
     LENGTH_DELIMITED,
     Map::class,
-    "type.googleapis.com/google.protobuf.ListValue"
+    "type.googleapis.com/google.protobuf.ListValue",
+    Syntax.PROTO_3
 ) {
   override fun encodedSize(value: List<*>): Int {
     var result = 0
@@ -823,7 +825,8 @@ internal fun commonStructList(): ProtoAdapter<List<*>> = object : ProtoAdapter<L
 internal fun commonStructNull(): ProtoAdapter<Nothing?> = object : ProtoAdapter<Nothing?>(
     VARINT,
     Nothing::class,
-    "type.googleapis.com/google.protobuf.NullValue"
+    "type.googleapis.com/google.protobuf.NullValue",
+    Syntax.PROTO_3
 ) {
   override fun encodedSize(value: Nothing?): Int = varint32Size(0)
 
@@ -853,7 +856,8 @@ internal fun commonStructNull(): ProtoAdapter<Nothing?> = object : ProtoAdapter<
 internal fun commonStructValue(): ProtoAdapter<Any?> = object : ProtoAdapter<Any?>(
     LENGTH_DELIMITED,
     Any::class,
-    "type.googleapis.com/google.protobuf.Value"
+    "type.googleapis.com/google.protobuf.Value",
+    Syntax.PROTO_3
 ) {
   override fun encodedSize(value: Any?): Int {
     @Suppress("UNCHECKED_CAST") // Assume map keys are strings.
